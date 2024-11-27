@@ -1,89 +1,111 @@
-import { motion } from 'framer-motion'
-import { useRef, useState } from 'react'
-import emailjs from '@emailjs/browser'
-import { styles } from '../styles'
-import { EarthCanvas } from './canvas'
-import { SectionWrapper } from '../hoc'
-import { slideIn } from '../utils/motion'
+import { motion } from "framer-motion";
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
+import { styles } from "../styles";
+import { SectionWrapper } from "../hoc";
+import { slideIn } from "../utils/motion";
+import EarthCanvas from "../canvas/Earth";
+import AddressIcon from "../assets/map.png";
+import MailIcon from "../assets/mail.png";
+import CallIcon from "../assets/phone-call.png";
+import LinkedinIcon from "../assets/linkedin.png";
+import GithubIcon from "../assets/github.png";
 
 const Contact = () => {
-  const formRef = useRef()
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
-  const [loading, setLoading] = useState(false)
-
-  const handleChange = () => {}
-
-  const handleSubmit = () => {}
-
   return (
-    <div className='xl:mt-2 h-fit xl:flex-row flex-col-reverse flex gap-10 overflow-hidden'>
+    <div className="xl:mt-2 h-fit xl:flex-row flex-col-reverse flex gap-9 overflow-hidden">
       <motion.div
-        variants={slideIn('left', 'tween', 0.2, 1)}
-        className='flex-[o.75] bg-black-100 p-8 rounded-2xl'
+        variants={slideIn("left", "tween", 0.2, 1)}
+        className="flex-[o.75] bg-black-100 p-6 rounded-2xl"
       >
         <p className={styles?.sectionSubText}>Get in touch</p>
-        <h3 className={styles?.sectionHeadText}>Contact.</h3>
-        <form
-          ref={formRef}
-          onSubmit={handleSubmit}
-          className='mt-4 flex flex-col gap-4'
-        >
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your Name</span>
-            <input
-              type='text'
-              name='name'
-              value={form.name}
-              onChange={handleChange}
-              placeholder="What's your name?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
-            />
-          </label>
+        <h3 className={styles?.sectionHeadText}>Contact</h3>
 
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your Email</span>
-            <input
-              type='email'
-              name='email'
-              value={form.email}
-              onChange={handleChange}
-              placeholder="What's your email?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
-            />
-          </label>
-
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your Message</span>
-            <textarea
-              rows={3}
-              name='message'
-              value={form.message}
-              onChange={handleChange}
-              placeholder='What do you want to say?'
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
-            />
-          </label>
-          <button
-            type='submit'
-            className='bg-tertiary py-3 px-8 outline-none w-fit text-white font-bold shadow-md shadow-primary rounded-xl'
+        <div className="mt-5">
+          <div
+            options={{ max: 45, scale: 1, speed: 450 }}
+            className="flex items-center"
           >
-            {loading ? 'Sending...' : 'Send'}
-          </button>
-        </form>
+            <img
+              src={MailIcon}
+              alt="mail"
+              className="w-10 h-10 object-contain"
+            />
+
+            <h3 className="text-white text-[20px] font-bold text-center ml-5">
+              shrutithorat8816@gmail.com
+            </h3>
+          </div>
+          <div
+            options={{ max: 45, scale: 1, speed: 450 }}
+            className="flex items-center mt-5"
+          >
+            <img
+              src={CallIcon}
+              alt="mail"
+              className="w-10 h-10 object-contain"
+            />
+
+            <h3 className="text-white text-[20px] font-bold text-center ml-5">
+              (+91) 8421058816
+            </h3>
+          </div>
+          <div
+            options={{ max: 45, scale: 1, speed: 450 }}
+            className="flex items-center mt-5"
+          >
+            <img
+              src={AddressIcon}
+              alt="mail"
+              className="w-10 h-10 object-contain"
+            />
+
+            <h3 className="text-white text-[20px] font-bold text-center ml-5">
+              Sangli, Maharashtra
+            </h3>
+          </div>
+
+          <h2 className="text-white text-[30px] font-bold mt-10">My Socials</h2>
+          <div className="flex gap-4 mt-5">
+            <div
+              onClick={() =>
+                window.open(
+                  "https://www.linkedin.com/in/shruti-thorat-8421058816/",
+                  "_blank"
+                )
+              }
+              className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
+            >
+              <img
+                src={LinkedinIcon}
+                alt="mail"
+                className="w-10 h-10 object-contain"
+              />
+            </div>
+            <div
+              onClick={() =>
+                window.open("https://github.com/ShrutiThorat", "_blank")
+              }
+              className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
+            >
+              <img
+                src={GithubIcon}
+                alt="mail"
+                className="w-10 h-10 object-contain"
+              />
+            </div>
+          </div>
+        </div>
       </motion.div>
 
       <motion.div
-        variants={slideIn('right', 'tween', 0.2, 1)}
-        className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
+        variants={slideIn("right", "tween", 0.2, 1)}
+        className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]"
       >
         <EarthCanvas />
       </motion.div>
     </div>
-  )
-}
+  );
+};
 
-export default SectionWrapper(Contact, 'contact')
+export default SectionWrapper(Contact, "contact");
